@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="mt-4">
+    <div class="list-group">
+        {% for member in crew %}
+            {% set cabin_number = loop.index %}
+            <div class="list-group-item">
+                {{ member.name }} {{ member.surname }} - Каюта № {{ cabin_number }}
+                {% if loop.first %}
+                    <span class="badge bg-primary"> - капитан корабля</span>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

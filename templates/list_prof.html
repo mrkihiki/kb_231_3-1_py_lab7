@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="mt-4">
+    {% if list_type == 'ul' %}
+        <ul type="square">
+            {% for prof in professions %}
+                <li>{{ prof }}</li>
+            {% endfor %}
+        </ul>
+    {% elif list_type == 'ol' %}
+        <ol class="list-group list-group-numbered">
+            {% for prof in professions %}
+                <li class="list-group-item">{{ prof }}</li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <div class="alert alert-danger">
+            Неверный параметр списка. Используйте 'ul' или 'ol'
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

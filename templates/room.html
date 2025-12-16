@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="mt-4">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Цвет стен</th>
+                <th>Эмблема</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    {% if sex == 'male' %}
+                        <span style="color: #4169E1; font-weight: bold;">Голубой</span>
+                    {% elif sex == 'female' %}
+                        <span style="color: #FF69B4; font-weight: bold;">Розовый</span>
+                    {% else %}
+                        <span style="color: #808080; font-weight: bold;">Серый</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if age < 21 %}
+                        <img src="{{ url_for('static', filename='img/young.png') }}"
+                             alt="Эмблема для молодых"
+                             style="width: 100px;">
+                    {% else %}
+                        <img src="{{ url_for('static', filename='img/adult.png') }}"
+                             alt="Эмблема для взрослых"
+                             style="width: 100px;">
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="mt-3">
+        <p><strong>Параметры:</strong></p>
+        <p>Пол: {{ sex }}, Возраст: {{ age }}</p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "name": "Алексей",
+    "surname": "Иванов",
+    "photo": "photo/1.jpg",
+    "professions": ["Инженер-исследователь", "Пилот"],
+    "gender": "male",
+    "age": 35
+  },
+  {
+    "id": 2,
+    "name": "Мария",
+    "surname": "Петрова",
+    "photo": "photo/2.jpg",
+    "professions": ["Врач", "Экзобиолог"],
+    "gender": "female",
+    "age": 32
+  },
+  {
+    "id": 3,
+    "name": "Дмитрий",
+    "surname": "Сидоров",
+    "photo": "photo/3.jpg",
+    "professions": ["Строитель", "Инженер по терраформированию"],
+    "gender": "male",
+    "age": 40
+  },
+  {
+    "id": 4,
+    "name": "Елена",
+    "surname": "Кузнецова",
+    "photo": "photo/4.jpg",
+    "professions": ["Климатолог", "Метеоролог"],
+    "gender": "female",
+    "age": 28
+  },
+  {
+    "id": 5,
+    "name": "Сергей",
+    "surname": "Попов",
+    "photo": "photo/5.jpg",
+    "professions": ["Специалист по радиационной защите", "Врач"],
+    "gender": "male",
+    "age": 45
+  },
+  {
+    "id": 6,
+    "name": "Анна",
+    "surname": "Смирнова",
+    "photo": "photo/6.jpg",
+    "professions": ["Астрогеолог", "Гляциолог"],
+    "gender": "female",
+    "age": 31
+  },
+  {
+    "id": 7,
+    "name": "Игорь",
+    "surname": "Васильев",
+    "photo": "photo/7.jpg",
+    "professions": ["Инженер жизнеобеспечения", "Киберинженер"],
+    "gender": "male",
+    "age": 38
+  },
+  {
+    "id": 8,
+    "name": "Ольга",
+    "surname": "Морозова",
+    "photo": "photo/8.jpg",
+    "professions": ["Оператор марсохода", "Штурман"],
+    "gender": "female",
+    "age": 29
+  },
+  {
+    "id": 9,
+    "name": "Владимир",
+    "surname": "Новиков",
+    "photo": "photo/9.jpg",
+    "professions": ["Пилот дронов", "Пилот"],
+    "gender": "male",
+    "age": 33
+  },
+  {
+    "id": 10,
+    "name": "Наталья",
+    "surname": "Федорова",
+    "photo": "photo/10.jpg",
+    "professions": ["Врач", "Экзобиолог", "Климатолог"],
+    "gender": "female",
+    "age": 36
+  }
+]

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="mt-4">
+    <h2>Список доступных страниц:</h2>
+    <ul class="list-group mt-3">
+        <li class="list-group-item">
+            <a href="{{ url_for('list_prof', list_type='ul') }}">Список профессий (маркированный)</a>
+        </li>
+        <li class="list-group-item">
+            <a href="{{ url_for('list_prof', list_type='ol') }}">Список профессий (нумерованный)</a>
+        </li>
+        <li class="list-group-item">
+            <a href="{{ url_for('distribution') }}">Размещение по каютам</a>
+        </li>
+        <li class="list-group-item">
+            <a href="{{ url_for('member_random') }}">Случайный член экипажа</a>
+        </li>
+        <li class="list-group-item">
+            {% for i in range(1, 11) %}
+                <a href="{{ url_for('member_by_number', number=i) }}">Член экипажа {{ i }}</a><br>
+            {% endfor %}
+        </li>
+        <li class="list-group-item">
+            <a href="{{ url_for('room', sex='male', age=20) }}">Оформление каюты (мужчина, 20 лет)</a><br>
+            <a href="{{ url_for('room', sex='female', age=25) }}">Оформление каюты (женщина, 25 лет)</a>
+        </li>
+        <li class="list-group-item">
+            <a href="{{ url_for('astronaut_selection') }}">Запись добровольцем</a>
+        </li>
+        <li class="list-group-item">
+            <a href="{{ url_for('galery') }}">Галерея</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}
