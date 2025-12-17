@@ -1,5 +1,4 @@
 import os
-import random
 import smtplib
 from email import encoders
 from email.mime.base import MIMEBase
@@ -9,7 +8,7 @@ from email.mime.text import MIMEText
 from flask import Flask, url_for, render_template, json, abort, redirect, request
 from flask_wtf import FlaskForm
 from werkzeug.utils import secure_filename
-from wtforms import StringField, SelectField, TextAreaField, BooleanField, FileField ,SubmitField
+from wtforms import StringField, SelectField, TextAreaField, BooleanField, FileField, SubmitField
 from wtforms.validators import DataRequired, Email
 from flask_bootstrap import Bootstrap5
 
@@ -18,8 +17,10 @@ app.config['ALLOWED_EXTENSIONS'] = {'png', 'jpg', 'jpeg', 'gif'}
 app.config['SECRET_KEY'] = 'my_secret_key'
 bootstrap = Bootstrap5(app)
 
+
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
+
 
 def get_navbar():
     return '''
@@ -49,13 +50,11 @@ def get_footer():
 
 
 def send_email(to_email, subject, body, photo=None):
-    # === НАСТРОЙКИ SMTP (ИЗМЕНИТЕ ЭТИ ДАННЫЕ!) ===
-    SMTP_SERVER = "smtp.yandex.ru"  # для Gmail
+    SMTP_SERVER = "smtp.yandex.ru"  # для yandex
     SMTP_PORT = 587
     SMTP_USERNAME = "mrkihiki@yandex.ru"  # ваш email
-    SMTP_PASSWORD = "eqikzfvrvqwdtnnh"  # пароль приложения (не обычный пароль!)
+    SMTP_PASSWORD = "eqikzfvrvqwdtnnh"  # пароль приложения
     FROM_EMAIL = "mrkihiki@yandex.ru"
-    # ============================================
 
     try:
         # Создаем сообщение
@@ -89,7 +88,7 @@ def send_email(to_email, subject, body, photo=None):
 
         # Устанавливаем соединение с SMTP сервером
         server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
-        server.starttls()  # Шифрование
+        server.starttls()
         server.login(SMTP_USERNAME, SMTP_PASSWORD)
 
         # Отправляем письмо
@@ -139,7 +138,7 @@ def list_prof(list_type):
         'Пилот дронов'
     ]
     param['list_type'] = list_type
-    return render_template('list_prof.html',**param)
+    return render_template('list_prof.html', **param)
 
 
 @app.route('/distribution')
@@ -168,7 +167,7 @@ def member_by_number(number):
 
     param['member'] = crew[number - 1]
     param['is_random'] = False
-    return render_template('member.html',**param)
+    return render_template('member.html', **param)
 
 
 @app.route('/member/random')
@@ -181,7 +180,8 @@ def member_random():
         crew = json.loads(f.read())
     param['crew'] = crew
     param['is_random'] = True
-    return render_template('member.html',**param)
+    return render_template('member.html', **param)
+
 
 @app.route('/room/<sex>/<int:age>')
 def room(sex, age):
@@ -191,7 +191,7 @@ def room(sex, age):
     param['title'] = 'Оформление каюты'
     param['sex'] = sex
     param['age'] = age
-    return render_template('room.html',**param)
+    return render_template('room.html', **param)
 
 
 @app.route('/astronaut_selection', methods=['GET', 'POST'])
@@ -200,6 +200,7 @@ def astronaut_selection():
     param['get_navbar'] = get_navbar()
     param['get_footer'] = get_footer()
     param['title'] = 'Запись добровольцем'
+
     class AstronautForm(FlaskForm):
         last_name = StringField('Фамилия', validators=[DataRequired()])
         first_name = StringField('Имя', validators=[DataRequired()])
@@ -262,8 +263,8 @@ def astronaut_selection():
         Готов остаться на Марсе: {'Да' if form.stay_on_mars.data else 'Нет'}
         """
         if send_email(form.email.data, 'Заявка на участие в миссии', body, photo):
-            render_template('success.html',**param)
-    return render_template('astronaut_selection.html',**param)
+            render_template('success.html', **param)
+    return render_template('astronaut_selection.html', **param)
 
 
 @app.route('/galery', methods=['GET', 'POST'])
@@ -272,12 +273,12 @@ def galery():
     param['get_navbar'] = get_navbar()
     param['get_footer'] = get_footer()
     param['title'] = 'Галерея'
-    #Список изображений
+    # Список изображений
     images = [
-            'https://avatars.mds.yandex.net/i?id=c84810f4f463b7e04ed81b95a812d4f8_l-5014030-images-thumbs&n=13',
-            'https://i.pinimg.com/originals/dc/18/a1/dc18a128be9c6708a16f76c4fdf29e03.jpg',
-            'https://s0.rbk.ru/v6_top_pics/media/img/0/55/347256249103550.jpeg'
-        ]
+        'https://avatars.mds.yandex.net/i?id=c84810f4f463b7e04ed81b95a812d4f8_l-5014030-images-thumbs&n=13',
+        'https://i.pinimg.com/originals/dc/18/a1/dc18a128be9c6708a16f76c4fdf29e03.jpg',
+        'https://s0.rbk.ru/v6_top_pics/media/img/0/55/347256249103550.jpeg'
+    ]
     gallery_folder = os.path.join('static', 'img', 'gallery')
     os.makedirs(gallery_folder, exist_ok=True)
 
@@ -301,7 +302,7 @@ def galery():
             return redirect(url_for('galery'))
 
     param['images'] = images
-    return render_template('galery.html',**param)
+    return render_template('galery.html', **param)
 
 
 if __name__ == '__main__':
