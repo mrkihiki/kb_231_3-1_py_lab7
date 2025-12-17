@@ -6,6 +6,7 @@
         <div class="alert alert-info">
             Выбран случайный член экипажа
         </div>
+    {% set member = crew|random %}
     {% endif %}
 
     <h2>{{ member.name }} {{ member.surname }}</h2>

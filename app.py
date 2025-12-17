@@ -167,7 +167,6 @@ def member_by_number(number):
         abort(404, description="Член экипажа не найден")
 
     param['member'] = crew[number - 1]
-    print(param['member'])
     param['is_random'] = False
     return render_template('member.html',**param)
 
@@ -180,8 +179,7 @@ def member_random():
     param['title'] = 'Член экипажа'
     with open("static/members/crew.json", "rt", encoding="utf8") as f:
         crew = json.loads(f.read())
-    param['member'] = random.choice(crew)
-    print(param['member'])
+    param['crew'] = crew
     param['is_random'] = True
     return render_template('member.html',**param)
 
