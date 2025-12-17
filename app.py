@@ -53,7 +53,7 @@ def send_email(to_email, subject, body, photo=None):
     SMTP_SERVER = "smtp.yandex.ru"  # для yandex
     SMTP_PORT = 587
     SMTP_USERNAME = "mrkihiki@yandex.ru"  # ваш email
-    SMTP_PASSWORD = "eqikzfvrvqwdtnnh"  # пароль приложения
+    SMTP_PASSWORD = "taxlrbsbiyyazalr"  # пароль приложения (больше не работает)
     FROM_EMAIL = "mrkihiki@yandex.ru"
 
     try:
@@ -95,7 +95,7 @@ def send_email(to_email, subject, body, photo=None):
         server.send_message(msg)
         server.quit()
 
-        print(f"✅ Email успешно отправлен на {to_email}")
+        print(f"✅ Email успешно отправлен")
         return True
 
     except Exception as e:
@@ -263,7 +263,7 @@ def astronaut_selection():
         Готов остаться на Марсе: {'Да' if form.stay_on_mars.data else 'Нет'}
         """
         if send_email(form.email.data, 'Заявка на участие в миссии', body, photo):
-            render_template('success.html', **param)
+            return render_template('success.html', **param)
     return render_template('astronaut_selection.html', **param)
 
 
